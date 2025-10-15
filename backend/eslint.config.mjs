@@ -19,7 +19,8 @@ export default defineConfig([
     settings: {
       "import/resolver": {
         node: {
-          extensions: [".js", ".mjs", ".cjs"],
+          extensions: [".js"],
+          moduleDirectory: ["node_modules", "src"], 
         },
       },
     },
@@ -28,37 +29,17 @@ export default defineConfig([
     extends: [js.configs.recommended, prettier],
 
     rules: {
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          js: "never",
-          mjs: "never",
-        },
-      ],
       "no-unused-vars": "error",
       "no-console": "warn",
       eqeqeq: ["error", "always"],
       curly: ["error", "all"],
       "no-var": "error",
       "prefer-const": "error",
-      "arrow-body-style": ["error", "as-needed"],
 
       quotes: ["error", "double", { avoidEscape: true }],
       semi: ["error", "always"],
-      indent: ["error", 2],
       "object-curly-spacing": ["error", "always"],
       "comma-dangle": ["error", "always-multiline"],
-      "space-before-function-paren": ["error", "never"],
-
-      "import/order": [
-        "warn",
-        {
-          groups: [["builtin", "external", "internal"]],
-          "newlines-between": "always",
-          alphabetize: { order: "asc", caseInsensitive: true },
-        },
-      ],
     },
   },
 ]);
