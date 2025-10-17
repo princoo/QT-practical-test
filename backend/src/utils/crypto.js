@@ -29,7 +29,6 @@ function generateKeyPair() {
 export function initializeKeys() {
   if (!fs.existsSync(KEYS_DIR)) {
     fs.mkdirSync(KEYS_DIR, { recursive: true });
-    console.log("Created keys directory");
   }
 
   if (fs.existsSync(PRIVATE_KEY_PATH) && fs.existsSync(PUBLIC_KEY_PATH)) {
