@@ -1,14 +1,33 @@
 import express from "express";
 import validate from "../middleware/validation.js";
-import { createUserSchema } from "../utils/schemas/userSchema.js";
-import { createUserController } from "../controllers/userController.js";
+import { createUserSchema, updateUserSchema } from "../utils/schemas/userSchema.js";
+import {
+  createUserController,
+  exportUsers,
+  getGroupedUsers,
+  updateUserController,
+} from "../controllers/userController.js";
 import asyncWrapper from "../utils/asyncWrapper.js";
+import { userEmailExists, userExists } from "../middleware/user.js";
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
   res.json("You are live");
 });
-router.post("/user", validate(createUserSchema), asyncWrapper(createUserController));
+router.get("/user", asyncWrapper(getGroupedUsers));
+router.get("/users/export", asyncWrapper(exportUsers));
+router.post(
+  "/user",
+  validate(createUserSchema),
+  asyncWrapper(userEmailExists),
+  asyncWrapper(createUserController),
+);
+router.patch(
+  "/user/:id",
+  validate(updateUserSchema),
+  asyncWrapper(userExists),
+  asyncWrapper(updateUserController),
+);
 
 export default router;

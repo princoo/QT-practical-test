@@ -16,3 +16,13 @@ export const createUserSchema = Joi.object().keys({
     .required()
     .messages(errorMessage("status")),
 });
+
+export const updateUserSchema = Joi.object().keys({
+  email: Joi.string().email().optional(),
+  role: Joi.string()
+    .valid(...Object.values(USER_ROLE))
+    .optional(),
+  status: Joi.string()
+    .valid(...Object.values(USER_STATUS))
+    .optional(),
+});
