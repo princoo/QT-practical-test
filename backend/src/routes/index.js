@@ -15,7 +15,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.json("You are live");
 });
-router.get("/user", asyncWrapper(getGroupedUsers));
+router.get("/users/weekly", asyncWrapper(getGroupedUsers));
 router.get("/users/export", asyncWrapper(exportUsers));
 router.post(
   "/user",
