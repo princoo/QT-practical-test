@@ -44,8 +44,6 @@ export function UserForm({
         }
       : {
           email: "",
-          role: UserRoleEnum.USER,
-          status: UserStatusEnum.ACTIVE,
         },
   });
 
@@ -120,7 +118,7 @@ export function UserForm({
             disabled={form.formState.isSubmitting}
             className="flex-1"
           >
-            {form.formState.isSubmitting ? "Saving..." : "Save Changes"}
+            {form.formState.isSubmitting ? "Saving..." : "Save"}
           </Button>
           <Button
             type="button"

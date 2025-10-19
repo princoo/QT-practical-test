@@ -60,7 +60,7 @@ export function getPublicKey() {
 }
 
 export function hashEmail(email) {
-  return crypto.createHash("sha384").update(email).digest("hex");
+  return crypto.createHash("sha384").update(email).digest();
 }
 
 export function signHash(hash) {
@@ -68,7 +68,7 @@ export function signHash(hash) {
   const sign = crypto.createSign("SHA384");
   sign.update(hash);
   sign.end();
-  return sign.sign(privateKey, "hex");
+  return sign.sign(privateKey, "base64");
 }
 
 export function verifySignature(hash, signature) {
@@ -77,9 +77,38 @@ export function verifySignature(hash, signature) {
     const verify = crypto.createVerify("SHA384");
     verify.update(hash);
     verify.end();
-    return verify.verify(publicKey, signature, "hex");
+    return verify.verify(publicKey, signature, "base64");
   } catch (error) {
     console.error("Signature verification error:", error);
     return false;
+  }
+}
+
+export function getPublicKeyAsJWKS() {
+  try {
+    // Get PEM public key
+    const publicKeyPem = getPublicKey();
+
+    // Convert to crypto key object
+    const publicKey = crypto.createPublicKey(publicKeyPem);
+
+    // Export as JWK
+    const jwk = publicKey.export({ format: "jwk" });
+
+    // Return in JWKS format (JSON Web Key Set)
+    return {
+      keys: [
+        {
+          kty: jwk.kty, // Key Type (e.g., "RSA")
+          n: jwk.n, // Modulus
+          e: jwk.e, // Exponent
+          alg: "RS384", // Algorithm: RSA + SHA-384
+          use: "sig", // Usage: signature verification
+          kid: "main-signing-key", // Key ID
+        },
+      ],
+    };
+  } catch (error) {
+    throw new Error(`Failed to generate JWKS: ${error.message}`);
   }
 }

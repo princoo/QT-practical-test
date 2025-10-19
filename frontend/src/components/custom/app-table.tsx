@@ -89,7 +89,7 @@ export default function AppTable<T extends { id: string | number }>({
         <CardHeader className="p-3">
           {(title || description) && (
             <div>
-              {title && <CardTitle>{title}</CardTitle>}
+              {title && <CardTitle className="px-6 py-3 text-lg font-semibold leading-none tracking-tight text-black">{title}</CardTitle>}
               {description && <CardDescription>{description}</CardDescription>}
             </div>
           )}

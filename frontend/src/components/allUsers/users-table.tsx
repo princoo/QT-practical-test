@@ -16,7 +16,7 @@ import AddUser from "./add-user-action";
 import { BaseDialog } from "../custom/base-dialog";
 import ConfirmDelete from "./confirm-delete";
 import { revalidateResource } from "@/actions/user";
-import { set } from "zod";
+import { useValidateUsers } from "@/lib/hooks/use-verified-users";
 
 export default function UsersTable() {
   const { data, loading, error, retry } = useUsersTable();
@@ -25,6 +25,8 @@ export default function UsersTable() {
   const [updateUser] = useUpdateUserMutation();
   const [deleteUser] = useDeleteUserMutation();
   const [onDelete, setOnDelete] = useState<boolean>(false);
+  const { validUsers, loading: validUsersLoading } = useValidateUsers(data);
+
   async function handleEditUser(user: User) {
     setSelectedUser(user);
     setIsEditModalOpen(true);
@@ -58,13 +60,15 @@ export default function UsersTable() {
       toast.success("Failed to update user");
     }
   }
+
   return (
     <div>
       <AddUser />
       <AppTable<User>
         columns={usersColumns}
-        data={data}
-        isLoading={loading}
+        data={validUsers}
+        title="All users"
+        isLoading={loading || validUsersLoading}
         error={error}
         retry={retry}
         emptyMessage="No users found"

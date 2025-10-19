@@ -7,6 +7,7 @@ import {
   getGroupedUsers,
   updateUserController,
   deleteUser,
+  getJWKSController,
 } from "../controllers/userController.js";
 import asyncWrapper from "../utils/asyncWrapper.js";
 import { userEmailExists, userExists } from "../middleware/user.js";
@@ -31,5 +32,6 @@ router.patch(
   asyncWrapper(updateUserController),
 );
 router.delete("/user/:id", asyncWrapper(userExists), asyncWrapper(deleteUser));
+router.get("/.well-known/jwks.json", getJWKSController);
 
 export default router;
