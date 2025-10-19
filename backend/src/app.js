@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 app.use("/", router);
 app.use(ErrorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
