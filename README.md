@@ -108,7 +108,7 @@ Modern dashboard interface built with Next.js 15, TypeScript, and Tailwind CSS.
 ## Quick Start
 
 1. **Clone and Install**
-````markdown
+
 ```bash
 cd QT/frontend
 npm install
