@@ -34,7 +34,7 @@ router.patch(
 );
 router.delete("/user/:id", asyncWrapper(userExists), asyncWrapper(deleteUser));
 router.get("/.well-known/jwks.json", getJWKSController);
-router.use("*", (req, res) => {
+router.use(/(.*)/, (req, res) => {
   sendResponse(res, { success: false, statusCode: 404, message: "Route Not Found" });
 });
 export default router;
