@@ -11,6 +11,7 @@ import {
 } from "../controllers/userController.js";
 import asyncWrapper from "../utils/asyncWrapper.js";
 import { userEmailExists, userExists } from "../middleware/user.js";
+import { sendResponse } from "../utils/responseHandler.js";
 
 const router = express.Router();
 
@@ -33,5 +34,7 @@ router.patch(
 );
 router.delete("/user/:id", asyncWrapper(userExists), asyncWrapper(deleteUser));
 router.get("/.well-known/jwks.json", getJWKSController);
-
+router.use("*", (req, res) => {
+  sendResponse(res, { success: false, statusCode: 404, message: "Route Not Found" });
+});
 export default router;
