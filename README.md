@@ -6,7 +6,6 @@ A Node.js backend service with Express, Prisma, and RSA encryption for secure us
 
 - Node.js (v16 or higher)
 - NPM
-- SQL database
 
 ## Getting Started
 
