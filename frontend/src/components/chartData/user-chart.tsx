@@ -20,7 +20,7 @@ export function WeeklyChart({ response }: Readonly<WeeeklyChartProps>) {
   const { success, data, isEmpty, total } = parseChartResponse(responseData);
   return (
     <ChartWrapper
-      title="Weekly New Users"
+      title="Users created per day"
       withTitle={true}
       subTitle="Last 7 days"
       isLoading={isLoading}

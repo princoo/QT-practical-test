@@ -6,6 +6,7 @@ import {
   exportUsers,
   getGroupedUsers,
   updateUserController,
+  deleteUser,
 } from "../controllers/userController.js";
 import asyncWrapper from "../utils/asyncWrapper.js";
 import { userEmailExists, userExists } from "../middleware/user.js";
@@ -29,5 +30,6 @@ router.patch(
   asyncWrapper(userExists),
   asyncWrapper(updateUserController),
 );
+router.delete("/user/:id", asyncWrapper(userExists), asyncWrapper(deleteUser));
 
 export default router;
