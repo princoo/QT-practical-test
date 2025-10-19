@@ -6,7 +6,6 @@ export function useValidateUsers(data?: User[]) {
   const [validUsers, setValidUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Create a stable dependency - only changes when actual data changes
   const dataKey = useMemo(() => {
     if (!data || data.length === 0) return "empty";
     return data.map(u => u.id).join(",");
