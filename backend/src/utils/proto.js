@@ -61,3 +61,4 @@ export async function decodeUsers(buffer) {
     throw new Error(`Failed to decode protobuf: ${error.message}`);
   }
 }
+

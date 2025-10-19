@@ -6,6 +6,7 @@ import {
   getPublicKeyService,
   updateUserService,
 } from "../services/userService.js";
+import { getPublicKeyAsJWKS } from "../utils/crypto.js";
 import { encodeUsers } from "../utils/proto.js";
 import { sendBinaryResponse, sendResponse } from "../utils/responseHandler.js";
 
@@ -50,4 +51,13 @@ export async function exportUsers(req, res) {
 export const getPublicKeyController = (req, res) => {
   const pubKey = getPublicKeyService();
   return sendResponse(res, { success: true, message: "Public key fetched", data: pubKey });
+};
+
+export const getJWKSController = (req, res) => {
+  const jwks = getPublicKeyAsJWKS();
+  return sendResponse(res, {
+    success: true,
+    message: "JWKS fetched successfully",
+    data: jwks,
+  });
 };

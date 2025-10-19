@@ -6,6 +6,7 @@ import { WeeeklyChartProps, WeeklyUser } from "@/lib/types/user";
 import { useGetWeeklyUsersQuery, userApi } from "@/lib/services/client/user";
 import UsersLineChart from "./line-chart";
 import { parseChartResponse } from "@/utils/responseHelper";
+import { useMemo } from "react";
 
 export function WeeklyChart({ response }: Readonly<WeeeklyChartProps>) {
   const { responseData, isLoading, handleRetry } = useChartData<
@@ -17,10 +18,13 @@ export function WeeklyChart({ response }: Readonly<WeeeklyChartProps>) {
     queryName: "getWeeklyUsers",
     apiSlice: userApi,
   });
-  const { success, data, isEmpty, total } = parseChartResponse(responseData);
+  const { success, data, isEmpty, total } = useMemo(
+    () => parseChartResponse(responseData),
+    [responseData]
+  );
   return (
     <ChartWrapper
-      title="Weekly New Users"
+      title="Users created per day"
       withTitle={true}
       subTitle="Last 7 days"
       isLoading={isLoading}
@@ -29,7 +33,7 @@ export function WeeklyChart({ response }: Readonly<WeeeklyChartProps>) {
       onRetry={handleRetry}
       isEmpty={isEmpty}
     >
-      <p className="px-6 text-3xl pb-6 text-black">{total}</p>
+      {!isLoading && <p className="px-6 text-3xl pb-6 text-black">{total}</p>}
       <UsersLineChart chartData={data} />
     </ChartWrapper>
   );

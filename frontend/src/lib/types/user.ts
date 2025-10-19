@@ -1,3 +1,4 @@
+import { UserRoleEnum, UserStatusEnum } from "../enums/user-enum";
 import { ApiResponse } from "./response";
 
 export interface WeeklyUser {
@@ -6,4 +7,12 @@ export interface WeeklyUser {
 }
 export interface WeeeklyChartProps {
   response: ApiResponse<WeeklyUser[]>;
+}
+export interface User {
+  id: string;
+  email: string;
+  role: UserRoleEnum;
+  status: UserStatusEnum;
+  signature: string;
+  createdAt: string;
 }

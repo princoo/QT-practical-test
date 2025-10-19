@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 export interface ChartCardProps {
   title?: string;
@@ -33,4 +33,19 @@ export interface ChartTooltipProps {
       day: string;
     };
   }>;
+}
+
+export interface CardConfig {
+  id: string;
+  component: React.ComponentType;
+  loader: () => ReactElement;
+}
+export interface ChartCardShimmerProps {
+  title?: string;
+  subTitle?: string;
+  className?: string;
+  headerClassName?: string;
+  contentClassName?: string;
+  withTitle?: boolean;
+  chartHeight?: string;
 }

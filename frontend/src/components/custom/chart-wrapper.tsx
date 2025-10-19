@@ -20,7 +20,7 @@ export function ChartCard({
       {withTitle && (
         <div className={`flex justify-between p-6 pb-0 ${headerClassName}`}>
           {withTitle && (
-            <h3 className="text-xl font-semibold leading-none tracking-tight text-black">
+            <h3 className="text-lg font-semibold leading-none tracking-tight text-black">
               {title}
             </h3>
           )}
