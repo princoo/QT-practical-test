@@ -175,3 +175,5 @@ npm start           # Run production server
 - Handle errors gracefully
 - Keep components modular
 - Follow Next.js conventions
+
+<img width="1875" height="868" alt="image" src="https://github.com/user-attachments/assets/5c349296-d222-427c-b6d7-652bd5858f9d" />
