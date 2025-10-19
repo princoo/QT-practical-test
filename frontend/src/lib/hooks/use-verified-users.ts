@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { User } from "@/lib/types/user";
 import { verifySignature } from "@/utils/crypto";
 
@@ -6,12 +6,20 @@ export function useValidateUsers(data?: User[]) {
   const [validUsers, setValidUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const dataKey = useMemo(() => {
+    if (!data || data.length === 0) return "empty";
+    return data.map(u => u.id).join(",");
+  }, [data]);
+
   useEffect(() => {
     let mounted = true;
 
     async function validate() {
-      if (!data || !Array.isArray(data)) {
-        setValidUsers([]);
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        if (mounted) {
+          setValidUsers([]);
+          setLoading(false);
+        }
         return;
       }
 
@@ -22,7 +30,8 @@ export function useValidateUsers(data?: User[]) {
             try {
               const ok = await verifySignature(user.email, user.signature);
               return ok ? user : null;
-            } catch {
+            } catch (error) {
+              console.error(`Verification failed for ${user.email}:`, error);
               return null;
             }
           })
@@ -41,7 +50,7 @@ export function useValidateUsers(data?: User[]) {
     return () => {
       mounted = false;
     };
-  }, [data]);
+  }, [dataKey]);
 
   return { validUsers, loading };
 }

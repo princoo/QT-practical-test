@@ -32,6 +32,8 @@ export default function UsersTable() {
     setIsEditModalOpen(true);
   }
   async function handleDeleteUser() {
+    setOnDelete(false);
+    setSelectedUser(null);
     try {
       toast.promise(deleteUser(selectedUser?.id as string).unwrap(), {
         loading: "Deleting user...",
@@ -40,8 +42,6 @@ export default function UsersTable() {
       });
 
       await revalidateResource("WeeklyUser");
-      setOnDelete(false);
-      setSelectedUser(null);
     } catch (error) {
       console.error("Delete failed:", error);
     }
