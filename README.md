@@ -13,7 +13,7 @@ A Node.js backend service with Express, Prisma, and RSA encryption for secure us
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd QT/backend
+cd QT-practical-test/backend
 ```
 
 2. **Install dependencies**
@@ -110,7 +110,7 @@ Modern dashboard interface built with Next.js 15, TypeScript, and Tailwind CSS.
 1. **Clone and Install**
 
 ```bash
-cd QT/frontend
+cd QT-practical-test/frontend
 npm install
 ```
 
