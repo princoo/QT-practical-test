@@ -13,7 +13,7 @@ A Node.js backend service with Express, Prisma, and RSA encryption for secure us
 1. **Clone the repository**
 ```bash
 git clone <repository-url>
-cd QT/backend
+cd QT-practical-test/backend
 ```
 
 2. **Install dependencies**
@@ -43,9 +43,6 @@ The application will automatically generate RSA keys on first startup in the `sr
 ```bash
 # Development mode
 npm run dev
-
-# Production mode
-npm start
 ```
 
 ## Project Structure
@@ -108,9 +105,9 @@ Modern dashboard interface built with Next.js 15, TypeScript, and Tailwind CSS.
 ## Quick Start
 
 1. **Clone and Install**
-````markdown
+
 ```bash
-cd QT/frontend
+cd QT-practical-test/frontend
 npm install
 ```
 
