@@ -22,8 +22,6 @@ export function WeeklyChart({ response }: Readonly<WeeeklyChartProps>) {
     () => parseChartResponse(responseData),
     [responseData]
   );
-  console.log("first")
-  console.log(data);
   return (
     <ChartWrapper
       title="Users created per day"

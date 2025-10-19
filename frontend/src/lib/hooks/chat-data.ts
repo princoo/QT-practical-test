@@ -23,7 +23,8 @@ export function useChartData<T, Q>({
     if (response) {
       setResponseData(response);
       dispatch(
-        apiSlice.util.upsertQueryData(queryName, undefined, response as any)
+        // narrow the type for RTK Query upsertQueryData which expects a query key
+        apiSlice.util.upsertQueryData(queryName as any, undefined, response as any)
       );
     }
   }, [response, dispatch, queryName, apiSlice]);

@@ -1,5 +1,4 @@
 import { LucideIcon } from "lucide-react";
-import { ApiResponse } from "./response";
 import { ReactNode } from "react";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
