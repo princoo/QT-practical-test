@@ -22,7 +22,7 @@ npm install
 ```
 
 3. **Environment Setup**
-Create a `.env` file in the root directory:
+From the same directory, Create a `.env` file:
 ```env
 DATABASE_URL="file:./dev.db"
 ```
@@ -112,7 +112,7 @@ npm install
 ```
 
 2. **Environment Setup**
-Create a `.env.local` file:
+From the same directory, Create a `.env.local` file:
 ```bash
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
 ```
