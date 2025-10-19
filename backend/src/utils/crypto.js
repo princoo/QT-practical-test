@@ -86,25 +86,19 @@ export function verifySignature(hash, signature) {
 
 export function getPublicKeyAsJWKS() {
   try {
-    // Get PEM public key
     const publicKeyPem = getPublicKey();
-
-    // Convert to crypto key object
     const publicKey = crypto.createPublicKey(publicKeyPem);
-
-    // Export as JWK
     const jwk = publicKey.export({ format: "jwk" });
 
-    // Return in JWKS format (JSON Web Key Set)
     return {
       keys: [
         {
-          kty: jwk.kty, // Key Type (e.g., "RSA")
-          n: jwk.n, // Modulus
-          e: jwk.e, // Exponent
-          alg: "RS384", // Algorithm: RSA + SHA-384
-          use: "sig", // Usage: signature verification
-          kid: "main-signing-key", // Key ID
+          kty: jwk.kty,
+          n: jwk.n,
+          e: jwk.e,
+          alg: "RS384",
+          use: "sig",
+          kid: "main-signing-key",
         },
       ],
     };
