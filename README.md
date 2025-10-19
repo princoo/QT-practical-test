@@ -43,9 +43,6 @@ The application will automatically generate RSA keys on first startup in the `sr
 ```bash
 # Development mode
 npm run dev
-
-# Production mode
-npm start
 ```
 
 ## Project Structure
